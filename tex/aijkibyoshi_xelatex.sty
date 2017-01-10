@@ -294,8 +294,11 @@
 \newcommand{\tabref}[1]{\tablename\ref{#1}}
 %\newcommand{\Equref}[1]{式~(\ref{#1})}
 \newcommand{\figref}[1]{\figurename\ref{#1}}
-\renewcommand{\figurename}{Fig.~}
-\renewcommand{\tablename}{Table~}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
 %ここにキャプションのフォントをゴシックにするようにかく
+\usepackage{caption}
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=sf}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=sf}
 
 %% %% End of file.
