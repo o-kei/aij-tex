@@ -1,12 +1,4 @@
-
-tex/template.aux
-
-tex/template.ent
-
-tex/template.log
-
-tex/template.out
-
-tex/template.synctex.gz
-
-tex/texput.log
+*.aux
+*.ent
+*.log
+*.out
