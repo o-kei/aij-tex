@@ -1,0 +1,207 @@
+% written by Kei YASUDA 2017
+% 応募要領指定フォントに準ずるために，xelatexを用いる。
+\documentclass[base=11pt,magstyle=real,a4paper,twocolumn,xelatex,pandoc,jafont=ms]{bxjsarticle}
+\usepackage{aij_kinki_xelatex}
+
+
+\usepackage{hyperref}
+
+ \lhead{}
+%タイトル，著者，キーワードなどを記入
+\title{駅前広場における景観の多様性とその評価に関する研究}
+\subtitle{サブタイトル}
+\foreigntitle{DIVERSITY AND FAVORABILITY OF TOWNSCAPES IN STATION PLAZAS}
+\foreignsubtitle{Sub title}
+\author{正会員\hspace{-.1pt}$\bigcirc$\hspace{-.1pt}構造 一郎\textsuperscript{*1}\quad
+	          同\quad 環境 二郎\textsuperscript{*2}\quad
+	          同\quad 計画 三郎\textsuperscript{*3}
+             }
+\foreignauthor{KOUZOU Ichirou,
+			             KANKYO Jirou,
+	                     and KEIKAKU  Saburo
+             }%英文での著者表記
+\affiliation{
+	\mbox{*1}&建築工業大学工学部建築学科　教授・工博 &  Prof., Dept. of Architecture, Faculty of Engineering,\\
+	&&Kenchiku Institute of Technology, Dr. Eng.\\
+	\mbox{*2}&建築工業大学工学部建築学科　助手・工修 & Research Assoc. Dept. of Architecture Faculty of Engineering\\
+	&&Kenchiku Institute of Technology M. Eng.\\
+	\mbox{*3}&建築工業大学工学部建築学科　大学院生・工修 & Graduate Student Dept. of Architecture Faculty of Engineering\\
+	&&Kenchiku Institute of Technology M. Eng.
+}%アスタリスクは本文で打っても数式で打っても文字間などうまくいかないので，上付き文字にして出力している。
+%\ekeyword{Diversity Favorability, Single-view-point townscape, 4-view-points townscape, Station plaza}
+\category{2.構造―2.振動―c.地盤震動}
+\jkeyword{多様性，好ましさ，単一視点景観，４視点景観，駅前広場，レパートリー}
+%%%---definition begin---%%%
+\newcommand{\marker}[1]{\underline{\textbf #1}}
+
+%%%---definition end---%%%
+
+
+
+%ここから本文
+\begin{document}
+\maketitle %abstractの後にかいて，abstractを段組にしない
+%\pagestyle{fancy}%draftの場合，ヘッダーを表示するとよい。
+\pagestyle{empty}%emptyにするとヘッダーは表示されない。
+%\tableofcontents %目次
+
+
+%\section{序論}
+%	\subsection{背景}
+%	\url{http://www.aij.or.jp/jpn/transaction/ronbun/}
+%
+２３４５６７８９０
+１２３４５６７８９０
+１２３\\2\\3\\4\\5\\6\\7\\8\\9\\10\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\20\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\30\\
+1\\2\\33\\
+あいうえおかきくけこさしすせそたちつてとなにぬ\\2\\3\\4\\5\\6\\7\\8\\9\\10\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\20\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\30\\
+1\\2\\33\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\10\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\20\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\30\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\40\\
+41\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\10\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\20\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\30\\
+1\\2\\3\\4\\5\\6\\7\\8\\9\\40\\
+41\\
+
+\section{はじめに}
+	論文作成にあたり「版下原稿執筆の手引き」を参照して，「論文集執筆要領」の各条項に従って作成願います。
+	見本として入力されている文字の間に文字を入力して，入力後に不要文字を削除すると組体裁がそのまま残ります。
+	先に削除するとテンプレートがなくなることがあります。
+	
+	本文の書体「和文：MS明朝、章節の表題はMSゴシック／英文：Century、章節の表題はArial」，文字の大きさ8pt，2段組み，１行30字，段間2字(6㎜)，行間14pt　50行，１頁(30文字×50行×2段＝3,000字詰)、余白　上20mm　下30mm　左右15mm。
+
+\section{タイトル・著者名・英文要旨・キーワードについて}
+	本文が和文の場合は和文タイトルを先に，その下行に英文タイトルを記載してください。
+	本文が英文の場合は英文タイトルを先に，その下行に和文タイトルを記載してください。
+	著者名も同様です。
+	
+	\begin{enumerate}
+		\renewcommand{\labelenumi}{$ \textcircled{\scriptsize\arabic{enumi}} $}%ここだけ箇条書きの数字を変更する
+		\item 先のタイトル　14pt　MS明朝　英数はCentury　英文の場合はすべて大文字／サブタイトル　10.5pt　MS明朝　英数はCentury　中央揃え。英文の場合は最初の1語のみキャピタルラージとしています。
+		
+		\item 下行のタイトル　10.5pt　MS明朝　英数はCentury　英文の場合はすべて大文字／サブタイトル　9pt　MS明朝　英数はCentury　中央揃え。英文の場合は最初の1語のみキャピタルラージとしています。
+		
+		\item 和文著者名　10.5pt　MS明朝　文字均等割付5字，氏名が3字以下は名字と名前の間に全角スペースを入れて均等割付5字，5字以上は名字と名前の間に半角スペースを入れてください。中央揃え，＊(合い印)は全角＊を上付きにしてください。
+		
+		\item 英文著者名（\textit{Namae MYOUZI})　 10.5pt　\textit{Century Italic}  
+		
+		\item 英文要旨(Abstract)　8pt　Century　行間1行(14pt相当)　，左右インデント　各4字。	
+		
+		\item {\timesnewroman\textit {\textbf{Keywords:~}}} の見出しは9pt　{\timesnewroman\textit {\textbf{Times New Roman Italic Bold}}}としてください。
+
+		\item 英文キーワードは 8pt　Times New Roman Italic　行間1行(14pt相当)　左右インデント　各4字　中央揃え。
+
+		\item 和文キーワードは 8pt　MS明朝　行間1行(14pt相当)　左右インデント　各2字　中央揃え。
+		
+	\end{enumerate}
+
+\section{質疑討論(回答)の書き方について}
+「版下原稿執筆の手引き」（組見本Ｂ）を参照してください。
+質疑討論では，対象とする論文の著者名・論文名・号数・掲載年月日を先のタイトル，下行のタイトルともにカッコ付きサブタイトルとして記載してください。回答では、英文サブタイトルのみに記載してください。
+
+\section{見出し}
+(1)　見出しは 8pt　MSゴシック　英文はArial
+
+\section{第1頁の脚注について}
+脚注は組体裁の都合上Wordの「脚注」機能を使わずに表を使用して，罫なしで作成しています。
+(1)　和文
+文字の大きさは 7pt  MS明朝　行間=固定値10pt
+(2)　英文
+文字の大きさは 7pt　Century  行間=固定値10pt
+(3)　表の「列」幅
+本文が和文の場合は，表の「列」幅は和文(左側 70.5㎜),英文(右側 97.5㎜)としています。本文が英文の場合は，左右入れ替えます。英文(左側 97.5㎜），和文(右側 70.5㎜)としています。
+
+\section{表について}
+表と本文の間は１行空け中央揃えにしてください。
+表題は，表の上に罫なしのセルを作りその中に入れると，表と表題がバラバラになりません。
+表番および表題はMSゴシック(英文はArial)で英語表記を推奨する。
+
+\begin{table}[H]
+\caption{The target station square}
+\small
+\centering
+\begin{tabular}{p{35mm}|p{35mm}}
+	\hline 
+	A name of the station and an exit name
+ & The form of an open space
+\\ 
+	\hline \hline
+	Chuo-rinkan & Rotary\\
+	Saginuma & Rotary\\
+	Tsukimino & Rotary\\
+	Miyazaki-dai& Pedestrian space\\
+	Minami-Machida& Pedestrian space\\
+	Futako-tamagawaen (west)&Pedestrian space\\
+	Suzukake-dai&Pedestrian space\\
+	Jiyugaoka&Rotary\\
+	Tsukushino&Pedestrian space\\
+	Yutenji&Rotary\\
+	Nagatsuta&Rotary\\
+	Den-enchofu&Rotary\\
+	Ichigao&Pedestrian space\\
+	JR Musashikosugi&Rotary\\
+	Eda&Rotary\\
+	Tokyu Musashikosugi&	Pedestrian space\\
+	Azamino (east)&Pedestrian space\\
+	Hiyoshi (south)&Rotary\\
+	Azamino (west)&Rotary\\
+	Sakuragicho&Pedestrian space\\
+	Tama-plaza&Pedestrian space\\
+	Ikegami&Rotary\\
+	\hline 
+\end{tabular} 
+\end{table}
+
+\section{図について}
+本文と図(\figref{fig:figure1})の間は１行空け中央揃えにしてください。
+図番および図題はMSゴシック(英文はArial)で英語表記を推奨する。
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{../figure/figure1}
+	\caption{Photography point}
+	\label{fig:figure1}
+\end{figure}
+
+
+\section{写真について}
+　写真(\figref{fig:photo1})と本文の間は１行空け中央揃えにしてください。
+写番および写題はMSゴシック(英文はArial)で英語表記を推奨する。
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{../figure/photo1}
+	\caption{An example of the photograph B}
+	\label{fig:photo1}
+\end{figure}
+
+
+\section{カッコ付き}
+箇条書き番号はカッコと数字を半角にして，カッコ・数字ともに書体をMS明朝にするときれいに揃います。
+　例：(1)　1)　１)(右側の片カッコの１は全角)
+\footnote{注表題は ７pt　MSゴシック(英文はArial)　上１行アキ}
+\footnote{注の文字の大きさは ７pt　MS明朝（英文はCentury） 行間　10.5pt　複数行は１字下げてください。番号は片カッコ付きで数字は半角にしてください。}
+
+\section{英文要約または和文要約について}
+　英文要約（600語以内）は本文の書体で論文の末尾に改頁し付ける。和文要約（3,000字以内）は本文の書体で論文の末尾に付ける。
+
+\vspace{1\Cvs}
+\begin{thebibliography}{9}
+	\bibitem{参考文献1}
+		参考文献表題は ７pt　MSゴシック(英文はArial)　上１行アキ
+	\bibitem{参考文献2}
+		参考文献の文字の大きさは ７pt　MS明朝(英文はCentury)　行間10.5pt　複数行は１字下げてください。番号は片カッコ付きで数字は半角にしてください。
+
+\end{thebibliography}
+\vspace{1\Cvs}
+%後注を出力
+\theendnotes
+\makeaffiliation
+\end{document}          

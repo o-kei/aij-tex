@@ -1,0 +1,316 @@
+% aij_kinki_xelatex.sty
+% (c) Kei Yasuda 2017
+
+\ProvidesPackage{aij_kinki_xelatex}
+ [2017/02/20 kei yasuda v0.1 aij_kinki_xelatex.sty]
+
+ 
+%------------------------------------------------%
+%パッケージ
+%------------------------------------------------%
+\usepackage{comment}%複数行コメント
+ \usepackage{multirow,array}%表
+ \usepackage{here}
+ \usepackage[colorlinks=false]{hyperref}
+
+ %------------------------------------------------%
+ %ヘッダー
+ %------------------------------------------------%
+ \usepackage{fancyhdr}
+ \lhead{Draft}
+ \rhead{\today}
+%-------------------------------------------------%
+%余白，文字数行数設定
+%-------------------------------------------------%
+%レイアウトはbxjsクラスでgeometryパッケージを使用しており，￥setlayout内でgeometryパッケージの内容で調整できる。
+ \setpagelayout{textwidth=47.5\zw}
+ \setpagelayout{left=17truemm, right=17truemm, top=30truemm, bottom=20truemm}
+ \setpagelayout{includehead=false, includefoot=false}
+ %頁番号なし
+ \renewcommand{\baselinestretch}{0.96} % 行間の倍率指定
+ \pagestyle{empty}
+ 
+ 
+ %-------------------------------------------------%
+ %font設定
+ %-------------------------------------------------%
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Schola}%tex gyre scholaはcenturyを元にして作られている。
+\setsansfont{Arial}
+\newfontfamily{\timesnewroman}{Times New Roman}
+
+ %-------------------------------------------------%
+ %箇条書き設定
+ %-------------------------------------------------%
+\renewcommand{\labelenumi}{(\theenumi)}
+
+\def\@listi{\leftmargin\leftmargini
+	\parsep \z@
+	\topsep \z@%0.5\baselineskip　
+	\itemsep \z@ \relax}
+\let\@listI\@listi
+
+ %-------------------------------------------------%
+ %maketitle bxjsarticleから。renewcommandで上書きする。
+%-------------------------------------------------%
+\usepackage{nidanfloat}%ページ下部に所属を出力するために必要。
+ \if@titlepage
+
+ %titlepageは前提としないので，タイトルページの場合のmaketitleは変更しない
+ \else
+	\newcommand*{\foreigntitle}[1]{\gdef\@foreigntitle{#1}
+														    \newcommand{\ftitle}{#1}}
+	\newcommand*{\foreignsubtitle}[1]{\gdef\@foreignsubtitle{#1}
+																\newcommand{\fsubtitle}{#1}}
+	\newcommand*{\foreignauthor}[1]{\gdef\@foreignauthor{#1}}
+	\newcommand*{\ekeyword}[1]{\gdef\@ekeyword{#1}}
+	\newcommand*{\jkeyword}[1]{\gdef\@jkeyword{#1}}
+	\newcommand*{\category}[1]{\gdef\@category{#1}}
+	\newcommand{\affiliation}[1]{\gdef\@affiliation{#1}\newcommand{\affiliationcopy}{#1}}
+	\renewcommand{\maketitle}{
+%		\par
+	 	\begingroup
+	 	\renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+	 	\def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+	 	\long\def\@makefntext##1{\advance\leftskip 3\jsZw
+	 		\parindent 1\jsZw\noindent
+	 		\llap{\@textsuperscript{\normalfont\@thefnmark}\hskip0.3\jsZw}##1}%
+	 	\if@twocolumn
+	 	\ifnum \col@number=\@ne
+	 	\@maketitle
+	 	\else
+	 	\twocolumn[\@maketitle]%
+	 	\fi
+	 	\else
+	 	\newpage
+	 	\global\@topnum\z@  % Prevents figures from going at top of page.
+	 	\@maketitle
+	 	\fi
+	 	\plainifnotempty
+	 	\@thanks
+	 		\begin{table*}[b]
+	 			\vspace{-1.0em}
+	 			\begin{flushleft}
+	 				{\small
+	 				\rule[0.1em]{\textwidth}{0.5truept}
+			 		\@foreigntitle \\
+%					\ifx\@foreignsubtitle\@undefined\else
+					\@foreignsubtitle \\%defaultはnormalsize%modify
+%					\fi
+	 				}
+	 			\end{flushleft}
+ 			\vspace{-1.0em}
+ 			\rightline{\@foreignauthor}
+	 		\end{table*}
+	 	\endgroup
+	 	\setcounter{footnote}{0}%
+	 	\global\let\thanks\relax
+	 	\global\let\maketitle\relax
+	 	\global\let\@thanks\@empty
+	 	\global\let\@author\@empty
+	 	\global\let\@date\@empty
+	 	\global\let\@title\@empty
+	 	\global\let\title\relax
+	 	\global\let\author\relax
+	 	\global\let\date\relax
+	 	\global\let\and\relax
+	 	
+	 	\global\let\@foreigntitle\@empty %add
+	 	\global\let\foreigntitle\relax %add
+	 	\global\let\@foreignsubtitle\@empty %add
+	 	\global\let\foreignsubtitle\relax %add
+	 	\global\let\@foreignauthor\@empty %add
+	 	\global\let\foreignauthor\relax %add 	 	
+	 	\global\let\@ekeyword\@empty %add
+	 	\global\let\ekeyword\relax %add
+	 	\global\let\@jkeyword\@empty %add
+	 	\global\let\jkeyword\relax %add 	
+		\global\let\@affiliation\@empty %add
+		\global\let\affiliation\relax %add 
+		\global\let\@category\@empty %add
+		\global\let\category\relax %add 	
+		
+	 }
+	 \renewcommand{\@maketitle}{%
+	 	\newpage\null
+		\vspace{-2.0em}
+	 	\begin{center}%
+	 		\let\footnote\thanks
+	 		{\large \@title}%
+	 		\\
+	 		\ifx\bxjs@subtitle\@undefined\else
+	 		{\large \bxjs@subtitle}%defaultはnormalsize%modify
+	 		\\
+	 		\fi
+	 	\end{center}%
+	 	\vspace{-1.0em}
+		\begin{flushright}
+			{\normalsize \@author\par}%
+		\end{flushright}
+		\vspace{-2.0em}
+	  	\begin{flushleft}%add
+	  		\textsf{\@category}\par
+		 	\textsf{\@jkeyword}\par
+		\end{flushleft}%
+	}
+\fi%if titlepage
+ 
+ %-------------------------------------------------%
+ %affiliationについて
+ %　\makeaffiliationの定義
+ %-------------------------------------------------%
+ \newcommand{\makeaffiliation}{
+	\begin{table*}[b]
+		\vspace{-1.0em}
+		{\footnotesize
+			\rule[0.1em]{\textwidth}{0.5truept}\par
+			\begin{tabular}{lll}
+%				\@affiliation
+				\affiliationcopy
+			\end{tabular}
+		}
+	\end{table*} 
+}
+  %-------------------------------------------------%
+  %abstractについて
+  %　「概要」を省略する　\abstractname
+  %-------------------------------------------------%
+ \renewcommand{\abstractname}{}%abstractnameを何もなしにする。
+ \newbox\@abstractbox
+ \if@titlepage
+ \else
+ 	\renewenvironment{abstract}{%
+ 		\if@twocolumn
+ 		\ifx\maketitle\relax
+ 		\section*{\abstractname}%
+ 		\else
+ 		\global\setbox\@abstractbox\hbox\bgroup
+ 		\begin{minipage}[b]{\textwidth}
+			\small%jsarticle default
+%			\normalsize%add
+ 			\parindent1\jsZw
+ 			\begin{center}%
+ 				{\headfont \abstractname\vspace{-.5em}\vspace{\z@}}%
+ 			\end{center}%
+ 			\list{}{%
+ 				\listparindent\parindent
+ 				\itemindent \listparindent
+ 				\rightmargin \leftmargin}%
+ 			\item\relax
+ 			\fi
+ 			\else
+			%	\small%jsarticle default
+			\normalsize%add
+% 			\begin{center}%
+% 				{\headfont \abstractname\vspace{-.5em}\vspace{\z@}}%
+% 			\end{center}%
+ 			\list{}{%
+ 				\listparindent\parindent
+ 				\itemindent \listparindent
+ 				\rightmargin \leftmargin}%
+ 			\item\relax
+ 			\fi}{\if@twocolumn
+ 			\ifx\maketitle\relax
+ 			\else
+ 			\endlist\end{minipage}\egroup
+ 		\fi
+ 		\else
+ 		\endlist
+ 		\fi}
+ 	\fi
+
+
+  %-------------------------------------------------%
+  %見出しのスタイル
+  %-------------------------------------------------%
+  \renewcommand{\postsectionname}{.}%section番号の後ろにピリオドを打つ（1. はじめに　みたいに）
+  
+  \if@twocolumn
+  \renewcommand{\section}{%
+  	\@startsection{section}{1}{\z@}%
+%  	{0.6\Cvs}{0.4\Cvs}%% jsarticleデフォルト
+	{\z@}{\z@}%add章タイトルの前後の行感覚をなくす。
+  	{\normalfont\normalsize\headfont\raggedright}}%元はLarge
+  \fi
+  \if@twocolumn
+  \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  	{\z@}{\z@}%
+  	{\normalfont\normalsize\headfont}}
+  \fi
+
+  %-------------------------------------------------%
+  %参考文献のスタイル
+  %-------------------------------------------------%
+\usepackage{overcite}
+%\renewcommand{\citeleft}{}
+\renewcommand\citeform[1]{#1)}%overciteパッケージ
+
+\makeatletter       % changes [1] to 1) in bibliography
+\renewcommand{\@biblabel}[1]{#1)}
+\makeatother
+\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize 参考文献}\fi}
+
+\newdimen\bibindent
+\setlength\bibindent{2\jsZw}
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+	\footnotesize%add
+	\baselineskip=10.5truept%add
+	\global\let\presectionname\relax
+	\global\let\postsectionname\relax
+	\section*{\refname}\@mkboth{\refname}{\refname}%
+	\list{\@biblabel{\@arabic\c@enumiv}}%
+	{\settowidth\labelwidth{\@biblabel{#1}}%
+		\labelwidth\z@%add
+		\labelsep=0.5\zw%add
+		\labelwidth=0.5\zw%add
+		\leftmargin=1\zw%add
+%		\leftmargin\labelwidth
+%		\advance\leftmargin\labelsep
+		\@openbib@code
+		\usecounter{enumiv}%
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+	\sloppy
+	\clubpenalty4000
+	\@clubpenalty\clubpenalty
+	\widowpenalty4000%
+	\sfcode`\.\@m}
+\makeatother
+
+%-------------------------%
+% 注のスタイル。後注に変更
+%------------------------%
+\usepackage{endnotes}
+\let\footnote=\endnote
+\renewcommand{\theendnote}{注\arabic{endnote})}%注と片カッコをつける。
+\renewcommand{\notesname}{\footnotesize 注}%題名を注にする。
+\renewcommand{\makeenmark}{\hbox{\normalfont \theenmark}}%textsuperscriptをとって，注での注番号は上付きにしない。
+\makeatletter 
+\renewcommand{\enoteformat}{\rightskip\z@ \leftskip=1\zw  \parindent=-1\zw 
+	 \leavevmode \makeenmark \hspace{0.5\zw}%
+	 \footnotesize%add
+	 \baselineskip=10.5truept%add
+	 }
+\renewcommand{\@endnotemark}{%
+	\leavevmode
+	\ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
+	\textsuperscript{\makeenmark}%textsuperscriptを足して，文中の注番号は上付きにする。
+	\ifhmode\spacefactor\@x@sf\fi
+	\relax}
+\makeatother
+
+%-------------------------%
+% 図表のスタイル。参照など。
+%------------------------%
+\newcommand{\tabref}[1]{\tablename\ref{#1}}
+%\newcommand{\Equref}[1]{式~(\ref{#1})}
+\newcommand{\figref}[1]{\figurename\ref{#1}}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
+%ここにキャプションのフォントをゴシックにするようにかく
+\usepackage{caption}
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=sf}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=sf}
+
+%% %% End of file.
