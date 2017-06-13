@@ -1,7 +1,7 @@
-% aijkibyoshi_xelatex.sty
+% aij_johosympo_xelatex.sty
 % (c) Kei Yasuda 2016-2017
 
-\ProvidesPackage{aijkibyoshi_xelatex}
+\ProvidesPackage{aij_johosympo_xelatex}
  [2017/01/07 kei yasuda v0.2 AIJKIBYOSHI_xelatex.STY]
 % [2016/06/13 kei yasuda v0.1 AIJKIBYOSHI_xelatex.STY]
  
@@ -25,13 +25,13 @@
 %余白，文字数行数設定
 %-------------------------------------------------%
 %レイアウトはbxjsクラスでgeometryパッケージを使用しており，￥setlayout内でgeometryパッケージの内容で調整できる。
- \setpagelayout{textwidth=62\zw}
- \setpagelayout{left=15truemm, right=15truemm, top=20truemm, bottom=30truemm}
+ \setpagelayout{textwidth=53\zw}
+ \setpagelayout{left=20truemm, right=20truemm, top=25truemm, bottom=25truemm}
  \setpagelayout{includehead=false, includefoot=false}
  %paperwidth=16.46truemm + 62\zw + 16.46truemm
  %paperheight=20truemm + 50\baselineskip + 30truemm
  %頁番号なし
- \renewcommand{\baselinestretch}{1.05} % 行間の倍率指定
+ \renewcommand{\baselinestretch}{0.90} % 行間の倍率指定
  \pagestyle{empty}
  
  
@@ -67,7 +67,8 @@
 	\newcommand*{\foreignauthor}[1]{\gdef\@foreignauthor{#1}}
 	\newcommand*{\ekeyword}[1]{\gdef\@ekeyword{#1}}
 	\newcommand*{\jkeyword}[1]{\gdef\@jkeyword{#1}}
-	\newcommand*{\affiliation}[1]{\gdef\@affiliation{#1}}
+	\newcommand*{\affiliation}[1]{\gdef\@affiliation{#1}\newcommand{\getaffiliation}{#1}}
+	
 	\renewcommand{\maketitle}{\par
 	 	\begingroup
 	 	\renewcommand\thefootnote{\@fnsymbol\c@footnote}%
@@ -88,17 +89,17 @@
 	 	\fi
 	 	\plainifnotempty
 	 	\@thanks
-		 	%affiliationを出力する。
-	 		\begin{table*}[b]
-	 			\begin{center}
-	 				{\footnotesize 
-	 					\rule[0.5em]{\textwidth}{0.5truept} \\
-	 					\begin{tabular}{rll}%{rp{0.37\textwidth}p{0.53\textwidth}}
-	 						\@affiliation
-	 					\end{tabular}
-	 				}
-	 			\end{center}
-	 		\end{table*}
+%		 	%affiliationを出力する。
+%	 		\begin{table*}[b]
+%	 			\begin{center}
+%	 				{\footnotesize 
+%	 					\rule[0.5em]{\textwidth}{0.5truept} \\
+%	 					\begin{tabular}{rll}%{rp{0.37\textwidth}p{0.53\textwidth}}
+%	 						\@affiliation
+%	 					\end{tabular}
+%	 				}
+%	 			\end{center}
+%	 		\end{table*}
 	 	\endgroup
 	 	\setcounter{footnote}{0}%
 	 	\global\let\thanks\relax
@@ -125,41 +126,57 @@
 		\global\let\@affiliation\@empty %add
 		\global\let\affiliation\relax %add 	
 	 }
+	 \newcommand{\makeaffiliation}{
+	 	\noindent \rule[0.5em]{\columnwidth}{0.5truept}
+	 	%affiliationを出力する。
+%	 	\begin{flushleft}
+	 		{\footnotesize 
+	 			%					\rule[0.5em]{\textwidth}{0.5truept} \\
+	 			\begin{tabular}{rl}%{rp{0.37\textwidth}p{0.53\textwidth}}
+	 				\getaffiliation
+	 			\end{tabular}
+	 		}
+%	 	\end{flushleft}
+	 }
+	 
 	 \renewcommand{\@maketitle}{%
-	 	\newpage\null
-	 	\vskip 6em
-	 	\begin{center}%
-	 		\let\footnote\thanks
-	 		{\LARGE \@title \par}%
-	 		\ifx\bxjs@subtitle\@undefined\else
-	 		\vskip1em
-	 		{\large \bxjs@subtitle\par}%defaultはnormalsize%modify
-	 		\fi
-	 		\vskip1em
-		 	{\large \@foreigntitle\par}%　％ここでサブタイトル生成している。%add 	
-		 	\vskip 1em
-		 	{\normalsize \@foreignsubtitle\par}%　％ここでサブタイトル生成している。%add 	
-	 		\vskip 1.5em
-	% 		{\large
-	% 			\lineskip .5em
-	% 			\begin{tabular}[t]{c}%
-	% 				\@author
-	% 			\end{tabular}\par}}%
-			{\large \@author \par}%
-			{\textit{\@foreignauthor}\par}%
-	%% 		\vskip 1em
-	%% 		{\large \@date}%
-	 	\end{center}%
-	 	\par\vskip 1.5em
-	 	\ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
-	  	\par
-	  	\begin{center}%add
-	 	 	{\timesnewroman\textit {\textbf{Keywords:~}}}{\timesnewroman\textit \@ekeyword\par}
-	 	 	\@jkeyword\par
-		\end{center}%
-	}
+	\newpage\null
+%	\vskip 6em
+	\begin{center}%
+		\let\footnote\thanks
+		{\textsf{\Large \@title} \par}%
+		\ifx\bxjs@subtitle\@undefined\else
+		\vskip1em
+		{\textsf{\large \bxjs@subtitle}\par}%defaultはnormalsize%modify
+		\fi
+		\vskip1em
+%		{\large \@foreigntitle\par}%　％ここでサブタイトル生成している。%add 	
+%		\vskip 1em
+%		{\normalsize \@foreignsubtitle\par}%　％ここでサブタイトル生成している。%add 	
+%		\vskip 1.5em
+		% 		{\large
+		% 			\lineskip .5em
+		% 			\begin{tabular}[t]{c}%
+		% 				\@author
+		% 			\end{tabular}\par}}%
+		\begin{flushright}
+		{\@author \par}%	
+		\end{flushright}
+%		{\textit{\@foreignauthor}\par}%
+		%% 		\vskip 1em
+		%% 		{\large \@date}%
+	\end{center}%
+%	\par\vskip 1.5em
+%	\ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
+	\par
+	\begin{center}%add
+%		{\timesnewroman\textit {\textbf{Keywords:~}}}{\timesnewroman\textit \@ekeyword\par}
+		キーワード：
+		\@jkeyword\par
+		\vskip 2em
+	\end{center}%
+}
 \fi%if titlepage
- 
   %-------------------------------------------------%
   %abstractについて
   %　「概要」を省略する　\abstractname
@@ -237,7 +254,7 @@
 \makeatletter       % changes [1] to 1) in bibliography
 \renewcommand{\@biblabel}[1]{#1)}
 \makeatother
-\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize 参考文献}\fi}
+\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize [参考文献]}\fi}
 
 \newdimen\bibindent
 \setlength\bibindent{2\jsZw}
