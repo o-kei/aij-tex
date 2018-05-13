@@ -248,7 +248,7 @@
 \makeatletter       % changes [1] to 1) in bibliography
 \renewcommand{\@biblabel}[1]{#1)}
 \makeatother
-\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize 参考文献}\fi}
+\renewcommand{\refname}{\if@english {References}\else {参考文献}\fi}
 
 \newdimen\bibindent
 \setlength\bibindent{2\jsZw}
@@ -258,7 +258,7 @@
 	\baselineskip=10.5truept%add
 	\global\let\presectionname\relax
 	\global\let\postsectionname\relax
-	\section*{\refname}\@mkboth{\refname}{\refname}%
+	\section*{\footnotesize \refname}\@mkboth{\refname}{\refname}%
 	\list{\@biblabel{\@arabic\c@enumiv}}%
 	{\settowidth\labelwidth{\@biblabel{#1}}%
 		\labelwidth\z@%add
@@ -284,7 +284,7 @@
 \usepackage{endnotes}
 \let\footnote=\endnote
 \renewcommand{\theendnote}{注\arabic{endnote})}%注と片カッコをつける。
-\renewcommand{\notesname}{\footnotesize 注}%題名を注にする。
+\renewcommand{\notesname}{注}%題名を注にする。
 \renewcommand{\makeenmark}{\hbox{\normalfont \theenmark}}%textsuperscriptをとって，注での注番号は上付きにしない。
 \makeatletter 
 \renewcommand{\enoteformat}{\rightskip\z@ \leftskip=1\zw  \parindent=-1\zw 
@@ -298,6 +298,9 @@
 	\textsuperscript{\makeenmark}%textsuperscriptを足して，文中の注番号は上付きにする。
 	\ifhmode\spacefactor\@x@sf\fi
 	\relax}
+\renewcommand{\enoteheading}{\section*{\footnotesize\notesname
+		\@mkboth{\MakeUppercase{\notesname}}{\MakeUppercase{\notesname}}}%
+	\mbox{}\par\vskip-\baselineskip}
 \makeatother
 
 %-------------------------%
