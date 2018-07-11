@@ -6,27 +6,24 @@
 
 \usepackage{hyperref}
 
- \lhead{}
 %タイトル，著者，キーワードなどを記入
 \title{駅前広場における景観の多様性とその評価に関する研究}
 \subtitle{サブタイトル}
 \foreigntitle{DIVERSITY AND FAVORABILITY OF TOWNSCAPES IN STATION PLAZAS}
 \foreignsubtitle{Sub title}
-\author{構造 一郎\textsuperscript{*}
-	          ，環境 二郎\textsuperscript{**}
-	          ，計画 三郎\textsuperscript{***}
+\author{構造 一郎\textsuperscript{*1}
+	          ，環境 二郎\textsuperscript{*2}
+	          ，計画 三郎\textsuperscript{*3}
              }
 \foreignauthor{Ichirou KOUZOU
 			             Jirou KANKYO
 	                     and Saburo KEIKAKU
              }%英文での著者表記
 \affiliation{
-	\mbox{*}&建築工業大学工学部建築学科　教授・工博 &  Prof., Dept. of Architecture, Faculty of Engineering, Kenchiku Institute of Technology, Dr. Eng.\\
-	\mbox{**}&建築工業大学工学部建築学科　助手・工修 & Research Assoc. Dept. of Architecture Faculty of Engineering\\
-	&&Kenchiku Institute of Technology M. Eng.\\
-	\mbox{***}&建築工業大学工学部建築学科　大学院生・工修 & Graduate Student Dept. of Architecture Faculty of Engineering\\
-	&&Kenchiku Institute of Technology M. Eng.
-}%アスタリスクは本文で打っても数式で打っても文字間などうまくいかないので，上付き文字にして出力している。
+	\mbox{*1}&建築工業大学工学部建築学科　教授・工博\\
+	\mbox{*2}&建築工業大学工学部建築学科　助手・工修\\
+	\mbox{*3}&建築工業大学工学部建築学科　大学院生・工修
+}%アスタリスクは本文で打っても数式で打っても文字間などうまくいかない。
 \ekeyword{Diversity Favorability, Single-view-point townscape, 4-view-points townscape, Station plaza}
 \jkeyword{多様性，好ましさ，単一視点景観，４視点景観，駅前広場，レパートリー}
 
@@ -45,7 +42,14 @@
 }
 
 %%%---definition end---%%%
-
+\pagestyle{fancy}
+%\thispagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{報告 H00}
+\cfoot{}
+\rfoot{}
 
 
 %ここから本文
@@ -60,12 +64,13 @@
 %		\item By using SD method with 40 couples of adjectives and factor analysis, 2 independent axes of “favorability” and “diver- sity” were shown.　Upon 2 dimensional plane, 4 areas were translated as meanings of; “fascinatingness”, “orderlyness”, “disorderlyness”, “boringness”.
 %		
 %		\item Indivisual pictures by single-view-point, composed pictures by 4-view-points, and their relations were located upon 2 dimensional plane of; “favorable-unfavorable”, “diverse-monotonous”.　
-%	\end{enumerate}
+%	\end{enumerate}s
 %	
 %\end{abstract}
 \maketitle %abstractの後にかいて，abstractを段組にしない
-%\pagestyle{fancy}%draftの場合，ヘッダーを表示するとよい。
-\pagestyle{empty}%emptyにするとヘッダーは表示されない。
+\thispagestyle{fancy}
+\pagestyle{fancy}%draftの場合，ヘッダーを表示するとよい。
+%\pagestyle{empty}%emptyにするとヘッダーは表示されない。
 %\tableofcontents %目次
 
 
@@ -233,9 +238,12 @@
 1\\2\\3\\4\\5\\6\\7\\8\\9\\40\\
 1\\2\\3\\4\\5\\6\\7\\48\\
 
+\noindent \rule[0.5em]{\columnwidth}{0.5truept}\\
+\makeaffiliation
+
+
 \onecolumn %英文要約または和文要約の為に1段組に戻す
 \begin{center}
-
 	{\large \ftitle}\\
 	{\normalsize \fsubtitle}\\
 
@@ -243,14 +251,6 @@
 	{\large\textit{Ichirou KOUZOU\textsuperscript{*}
 				 Jirou KANKYO\textsuperscript{**}
 				 and Saburo KEIKAKU\textsuperscript{***}}}
-	\vskip 1.5em
-	{\footnotesize
-		\begin{tabular}{rl}
-\mbox{*}&Prof., Dept. of Architecture, Faculty of Engineering, Kenchiku Institute of Technology, Dr. Eng\\
-\mbox{**}&Research Assoc. Dept. of Architecture Faculty of Engineering Kenchiku Institute of Technology M. Eng.\\
-\mbox{***}&Graduate Student Dept. of Architecture Faculty of Engineering Kenchiku Institute of Technology M. Eng.
-		\end{tabular}
-	}
 	\vskip 1.5em
 \end{center}
 \bgroup
@@ -274,6 +274,13 @@ For silo design, additional local pressure which depends on eccentricity of disc
 \par
 \egroup
 
-
+\noindent \rule[0.5em]{\columnwidth}{0.5truept}\\
+{\footnotesize
+	\begin{tabular}{rl}
+		\mbox{*1}&Prof., Dept. of Architecture, Faculty of Engineering, Kenchiku Institute of Technology, Dr. Eng\\
+		\mbox{*2}&Research Assoc. Dept. of Architecture Faculty of Engineering Kenchiku Institute of Technology M. Eng.\\
+		\mbox{*3}&Graduate Student Dept. of Architecture Faculty of Engineering Kenchiku Institute of Technology M. Eng.
+	\end{tabular}
+}
 
 \end{document}          
