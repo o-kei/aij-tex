@@ -9,6 +9,7 @@
 %パッケージ
 %------------------------------------------------%
 \usepackage{comment}%複数行コメント
+\usepackage{graphicx}
  \usepackage{multirow,array}%表
  \usepackage{here}
  \usepackage[colorlinks=false]{hyperref}
@@ -39,7 +40,7 @@
  %font設定
  %-------------------------------------------------%
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Schola}%tex gyre scholaはcenturyを元にして作られている。
+\setmainfont{Century}%tex gyre scholaはcenturyを元にして作られている。
 \setsansfont{Arial}
 \newfontfamily{\timesnewroman}{Times New Roman}
 
@@ -90,14 +91,14 @@
 	 	\@thanks
 		 	%affiliationを出力する。
 	 		\begin{table*}[b]
-	 			\begin{center}
+%	 			\begin{center}
 	 				{\footnotesize 
 	 					\rule[0.5em]{\textwidth}{0.5truept} \\
-	 					\begin{tabular}{rll}%{rp{0.37\textwidth}p{0.53\textwidth}}
+%	 					\begin{tabular}{rll}
 	 						\@affiliation
-	 					\end{tabular}
+%	 					\end{tabular}
 	 				}
-	 			\end{center}
+%	 			\end{center}
 	 		\end{table*}
 	 	\endgroup
 	 	\setcounter{footnote}{0}%
@@ -281,7 +282,7 @@
 	 \footnotesize%add
 	 \baselineskip=10.5truept%add
 	 }
-\newcommand{\@mark}{%
+\renewcommand{\@endnotemark}{%
 	\leavevmode
 	\ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
 	\textsuperscript{\makeenmark}%textsuperscriptを足して，文中の注番号は上付きにする。
@@ -292,14 +293,16 @@
 %-------------------------%
 % 図表のスタイル。参照など。
 %------------------------%
-\newcommand{\tabref}[1]{\tablename\ref{#1}}
+\newcommand{\tabref}[1]{\textsf{\tablename\ref{#1}}}
 %\newcommand{\Equref}[1]{式~(\ref{#1})}
-\newcommand{\figref}[1]{\figurename\ref{#1}}
+\newcommand{\figref}[1]{\textsf{\figurename\ref{#1}}}
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{Table}
 %ここにキャプションのフォントをゴシックにするようにかく
 \usepackage{caption}
+\usepackage{subcaption}
 \captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font={sf,footnotesize}}
 \captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font={sf,footnotesize}}
+\captionsetup{subrefformat=parens}
 
 %% %% End of file.
