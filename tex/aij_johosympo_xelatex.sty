@@ -13,6 +13,7 @@
  \usepackage{here}
  \usepackage[colorlinks=false]{hyperref}
  \usepackage{amsmath, bm}
+ \usepackage{graphicx}
 
  %------------------------------------------------%
  %ヘッダー
@@ -39,9 +40,9 @@
  %font設定
  %-------------------------------------------------%
 \usepackage{fontspec}
-\setmainfont{TeX Gyre Schola}%tex gyre scholaはcenturyを元にして作られている。
-\setsansfont{Arial}
-\newfontfamily{\timesnewroman}{Times New Roman}
+%\setmainfont{TeX Gyre Schola}%tex gyre scholaはcenturyを元にして作られている。
+%\setsansfont{Arial}
+%\newfontfamily{\timesnewroman}{Times New Roman}
 
  %-------------------------------------------------%
  %箇条書き設定
@@ -57,7 +58,7 @@
  %-------------------------------------------------%
  %maketitle bxjsarticleから。renewcommandで上書きする。
 %-------------------------------------------------%
-\usepackage{nidanfloat}%ページ下部に所属を出力するために必要。
+%\usepackage{nidanfloat}%ページ下部に所属を出力するために必要。
  \if@titlepage
 
  %titlepageは前提としないので，タイトルページの場合のmaketitleは変更しない
@@ -141,38 +142,35 @@
 	 
 	 \renewcommand{\@maketitle}{%
 	\newpage\null
-%	\vskip 6em
+	\vspace{-4mm}
 	\begin{center}%
 		\let\footnote\thanks
-		{\textsf{\Large \@title} \par}%
+		{\textbf{\fontsize{16pt}{10pt}\selectfont \@title} \par}%
 		\ifx\bxjs@subtitle\@undefined\else
-		\vskip1em
-		{\textsf{\large \bxjs@subtitle}\par}%defaultはnormalsize%modify
+		\vskip0.2em
+		{\textbf{\fontsize{12pt}{10pt}\selectfont \bxjs@subtitle}\par}%defaultはnormalsize%modify
 		\fi
-		\vskip1em
-%		{\large \@foreigntitle\par}%　％ここでサブタイトル生成している。%add 	
-%		\vskip 1em
-%		{\normalsize \@foreignsubtitle\par}%　％ここでサブタイトル生成している。%add 	
-%		\vskip 1.5em
-		% 		{\large
-		% 			\lineskip .5em
-		% 			\begin{tabular}[t]{c}%
-		% 				\@author
-		% 			\end{tabular}\par}}%
-		\begin{flushright}
-		{\@author \par}%	
-		\end{flushright}
-%		{\textit{\@foreignauthor}\par}%
-		%% 		\vskip 1em
+		\vskip0.5em
+		{\fontsize{14pt}{10pt}\selectfont \@foreigntitle\par}%　％ここでサブタイトル生成している。%add 	
+		\vskip 0.3em
+		{\fontsize{10.5pt}{10pt}\selectfont \@foreignsubtitle\par}%　％ここでサブタイトル生成している。%add 	
+		\vskip 1.5em
+
+		{\large \@author \par}%	
+
+        {\@foreignauthor \par}%
+ 		\vskip 1.5em
 		%% 		{\large \@date}%
 	\end{center}%
-%	\par\vskip 1.5em
-%	\ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
+	\begin{tabular}{rl}%{rp{0.37\textwidth}p{0.53\textwidth}}
+	\getaffiliation
+	\end{tabular}
+	\par\vskip 1.5em
+	\ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
 	\par
 	\begin{center}%add
-%		{\timesnewroman\textit {\textbf{Keywords:~}}}{\timesnewroman\textit \@ekeyword\par}
-		キーワード：
-		\@jkeyword\par
+		\textbf{キーワード}：\@jkeyword\par
+		\textbf{Keywords}:~\@ekeyword\par
 		\vskip 2em
 	\end{center}%
 }
@@ -181,7 +179,7 @@
   %abstractについて
   %　「概要」を省略する　\abstractname
   %-------------------------------------------------%
- \renewcommand{\abstractname}{}%abstractnameを何もなしにする。
+ \renewcommand{\abstractname}{Summary}%
  \newbox\@abstractbox
  \if@titlepage
  \else
@@ -194,10 +192,11 @@
  		\begin{minipage}[b]{\textwidth}
 			\small%jsarticle default
 %			\normalsize%add
- 			\parindent1\jsZw
- 			\begin{center}%
- 				{\headfont \abstractname\vspace{-.5em}\vspace{\z@}}%
- 			\end{center}%
+% 			\parindent1\jsZw
+% 			\begin{center}%
+% 				{\headfont \abstractname\vspace{-.5em}\vspace{\z@}}%
+% 			\end{center}%
+% 			\textbf{\textmc \abstractname}:\ %
  			\list{}{%
  				\listparindent\parindent
  				\itemindent \listparindent
