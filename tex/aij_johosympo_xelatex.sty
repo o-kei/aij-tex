@@ -2,8 +2,8 @@
 % (c) Kei Yasuda 2016-2017
 
 \ProvidesPackage{aij_johosympo_xelatex}
- [2017/01/07 kei yasuda v0.2 AIJKIBYOSHI_xelatex.STY]
-% [2016/06/13 kei yasuda v0.1 AIJKIBYOSHI_xelatex.STY]
+ [2020/06/10 kei yasuda v0.3]
+
  
 %------------------------------------------------%
 %パッケージ
@@ -39,10 +39,10 @@
  %-------------------------------------------------%
  %font設定
  %-------------------------------------------------%
-\usepackage{fontspec}
-%\setmainfont{TeX Gyre Schola}%tex gyre scholaはcenturyを元にして作られている。
-%\setsansfont{Arial}
-%\newfontfamily{\timesnewroman}{Times New Roman}
+% \usepackage{fontspec}
+\setCJKmainfont[BoldFont=NotoSerifCJKjp-SemiBold,
+				]{NotoSerifCJKjp-Light}%{Noto Serif CJK JP}
+
 
  %-------------------------------------------------%
  %箇条書き設定
@@ -159,20 +159,20 @@
 		{\large \@author \par}%	
 
         {\@foreignauthor \par}%
- 		\vspace{0.6\baselineskip}
+ 		\vspace{0.5\baselineskip}
 		%% 		{\large \@date}%
 	\end{center}%
 	\begin{tabular}{rl}%{rp{0.37\textwidth}p{0.53\textwidth}}
 	\getaffiliation
 	\end{tabular}
-	\par\vspace{\baselineskip}
+	\par\vspace{1.2\baselineskip}
 	\ifvoid\@abstractbox\else\centerline{\box\@abstractbox}\vskip1.5em\fi
-	\par\vspace{3\baselineskip}
+	\par\vspace{3.2\baselineskip}
 	\begin{center}%add
 		{\textbf{キーワード}}：\@jkeyword\par
 		{\footnotesize {\textbf{Keywords}}:~\@ekeyword}\par
 	\end{center}%
-		 \vspace{2\baselineskip}
+		 \vspace{1.6\baselineskip}
 }
 \fi%if titlepage
   %-------------------------------------------------%
@@ -229,7 +229,8 @@
   %見出しのスタイル
   %-------------------------------------------------%
   \renewcommand{\postsectionname}{.}%section番号の後ろにピリオドを打つ（1. はじめに　みたいに）
-  
+  \renewcommand{\headfont}{\mcfamily\bfseries}
+
   \if@twocolumn
   \renewcommand{\section}{%
   	\@startsection{section}{1}{\z@}%
@@ -253,19 +254,23 @@
 \makeatletter       % changes [1] to 1) in bibliography
 \renewcommand{\@biblabel}[1]{#1)}
 \makeatother
-\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize [参考文献]}\fi}
+\renewcommand{\refname}{\if@english {\footnotesize References}\else {\footnotesize[参考文献]}\fi}
 
 \newdimen\bibindent
 \setlength\bibindent{2\jsZw}
 \makeatletter
 \renewenvironment{thebibliography}[1]{%
-	\footnotesize%add
-	\baselineskip=10.5truept%add
+	% \footnotesize%add
+	% \setlength\baselineskip{8truept}
+	% \baselineskip=5truept%add
 	\global\let\presectionname\relax
 	\global\let\postsectionname\relax
 	\section*{\refname}\@mkboth{\refname}{\refname}%
 	\list{\@biblabel{\@arabic\c@enumiv}}%
 	{\settowidth\labelwidth{\@biblabel{#1}}%
+		% \fontsize{8truept}{1truept}\selectfont
+		\footnotesize%add
+		\setlength\baselineskip{8truept}
 		\labelwidth\z@%add
 		\labelsep=0.5\zw%add
 		\labelwidth=0.5\zw%add
@@ -289,14 +294,16 @@
 \usepackage{endnotes}
 \let\footnote=\endnote
 \renewcommand{\theendnote}{注\arabic{endnote})}%注と片カッコをつける。
-\renewcommand{\notesname}{\footnotesize 注}%題名を注にする。
+\renewcommand{\notesname}{\footnotesize[注]}%題名を注にする。
 \renewcommand{\makeenmark}{\hbox{\normalfont \theenmark}}%textsuperscriptをとって，注での注番号は上付きにしない。
 \makeatletter 
-\renewcommand{\enoteformat}{\rightskip\z@ \leftskip=1\zw  \parindent=-1\zw 
-	 \leavevmode \makeenmark \hspace{0.5\zw}%
-	 \footnotesize%add
-	 \baselineskip=10.5truept%add
-	 }
+\renewcommand{\enoteformat}
+	{\rightskip\z@ \leftskip=1\zw  \parindent=-1\zw 
+	\leavevmode \makeenmark \hspace{0.5\zw}%
+	% \footnotesize%add
+	% \setlength\baselineskip{5pt}
+	% \baselineskip=10.5truept%add
+	}
 \renewcommand{\@endnotemark}{%
 	\leavevmode
 	\ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
@@ -308,14 +315,14 @@
 %-------------------------%
 % 図表のスタイル。参照など。
 %------------------------%
-\newcommand{\tabref}[1]{\tablename\ref{#1}}
+\newcommand{\tabref}[1]{\tablename~\ref{#1}}
 %\newcommand{\Equref}[1]{式~(\ref{#1})}
-\newcommand{\figref}[1]{\figurename\ref{#1}}
-\renewcommand{\figurename}{Fig.}
+\newcommand{\figref}[1]{\figurename~\ref{#1}}
+\renewcommand{\figurename}{Figure}
 \renewcommand{\tablename}{Table}
 %ここにキャプションのフォントをゴシックにするようにかく
 \usepackage{caption}
-\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=sf}
-\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=sf}
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=period, font={normalfont, footnotesize}}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=period, font={normalfont, footnotesize}}
 
 %% %% End of file.

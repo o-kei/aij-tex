@@ -134,25 +134,28 @@
 本文との間に１行空け，表の前行に表番および表題を設ける。
 表の幅は，段の幅82㎜以内または2段分の170mm以内とし，表の下は１行空ける（\tabref{tab:joho}）。
 
+
 \begin{table}[H]
 	\caption{This is the caption of a table. It goes above the table.}
 	\label{tab:joho}
-	\small
+	\fontsize{8pt}{10pt}\selectfont
 	\centering
-	\begin{tabular}{l|l}
+	\begin{tabular}{|p{36mm}|p{36mm}|}
 		\hline 
 		Please use Times New Roman font with a size of 8 points
 		& Please use Times New Roman font with a size of 8 points
 		\\ 
-		\hline \hline
+		\hline
 		 & \\
-		\hline 
+		\hline
 	\end{tabular} 
 \end{table}
 
 
 \section{参考文献}
-6ページ目の最後には，区切り罫線の後に参考文献を8ポイント，行間11ポイントで記す\footnote{注}。
+6ページ目の最後には，区切り罫線の後に参考文献を8ポイント，行間11ポイントで記す
+\footnote{注はこのように書く。あああああああああああああああああああ
+ああああああああああああああああああああああああああああああああああ}。
 
 \clearpage
 \noindent
@@ -172,8 +175,9 @@
 \noindent \rule[0.5em]{\columnwidth}{0.5truept}\\
 \begin{thebibliography}{9}
 	\bibitem{参考文献1}
-		8ポイント，行間11ポイントで記す
-
+		8ポイント，行間11ポイントで記す。あああああ
+        ああああああああああああああああああああああ
+        あああああああああああああああああああああ
 \end{thebibliography}
 \vspace{1\Cvs}
 %後注を出力
